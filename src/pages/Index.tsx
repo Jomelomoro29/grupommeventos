@@ -91,12 +91,12 @@ const Index = () => {
     const matchesSearch = room.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          room.location.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesCapacity = capacityFilter === "" || 
+    const matchesCapacity = capacityFilter === "" || capacityFilter === "all" || 
                            (capacityFilter === "small" && room.capacity <= 6) ||
                            (capacityFilter === "medium" && room.capacity > 6 && room.capacity <= 15) ||
                            (capacityFilter === "large" && room.capacity > 15);
     
-    const matchesAvailability = availabilityFilter === "" ||
+    const matchesAvailability = availabilityFilter === "" || availabilityFilter === "all" ||
                                (availabilityFilter === "available" && room.isAvailable) ||
                                (availabilityFilter === "unavailable" && !room.isAvailable);
     
@@ -162,7 +162,7 @@ const Index = () => {
                   <SelectValue placeholder="Capacidade" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todas</SelectItem>
+                  <SelectItem value="all">Todas</SelectItem>
                   <SelectItem value="small">Até 6 pessoas</SelectItem>
                   <SelectItem value="medium">7-15 pessoas</SelectItem>
                   <SelectItem value="large">16+ pessoas</SelectItem>
@@ -174,7 +174,7 @@ const Index = () => {
                   <SelectValue placeholder="Disponibilidade" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todas</SelectItem>
+                  <SelectItem value="all">Todas</SelectItem>
                   <SelectItem value="available">Disponíveis</SelectItem>
                   <SelectItem value="unavailable">Ocupadas</SelectItem>
                 </SelectContent>
